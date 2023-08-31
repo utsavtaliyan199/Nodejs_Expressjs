@@ -1,12 +1,12 @@
-function logResponseBody(jsonBody)
-{
-    console.log(jsonBody);
-}
+// function logResponseBody(jsonBody)
+// {
+//     console.log(jsonBody);
+// }
 
-function callbackFn(result)
-{
-    result.json().then(logResponseBody)
-}
+// function callbackFn(result)
+// {
+//     result.json().then(logResponseBody)
+// }
 
 let sendObj = {
     method : "GET"
@@ -16,4 +16,8 @@ let sendObj = {
 // we're able to send requests to an (already) running nodejs prcoess(/handleSum here) from this another nodejs process (secondProcess.js)
 
 // we have 1. URL/route     2. request method sent inside an object    3. handler (as the callbackFn here)
-fetch("http://localhost:3000/handleSum",sendObj).then(callbackFn);
+fetch("http://localhost:3000/handleSum?counter=15&counter1=11&counter2=10",sendObj).then((resolve)=>{
+    resolve.json().then((jsonBody)=>{
+        console.log(jsonBody);
+    })
+});
